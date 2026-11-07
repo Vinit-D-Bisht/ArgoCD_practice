@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/Vinit-D-Bisht/ArgoCD_practice.git
     targetRevision: main           
-    path: app-of-apps-approach
+    path: app-of-apps-approach/apps
   destination:
     server: https://kubernetes.default.svc
     namespace: default             
