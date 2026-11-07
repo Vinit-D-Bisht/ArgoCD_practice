@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: my-project-team
+  namespace: argocd
+spec:
+  description: this is my project for argocd
+  sourceRepos:
+    - https://github.com/Vinit-D-Bisht/ArgoCD_practice.git
+  destinations:
+    - namespace: default
+      server: https://kubernetes.default.svc
+  clusterResourceWhitelist:    # Which cluster-wide resources are allowed (e.g., CRDs)
+    - group: "*"               # '*' means allow all groups
+      kind: "*"                # '*' means allow all kinds
+  namespaceResourceWhitelist:  # Which namespace-level resources are allowed
+    - group: "*"               # Here also allowing everything
+      kind: "*"
+  roles:                       # Define roles for RBAC within this Project
+    - name: project-admins    # Role name
+      description: Admins for my project team
+      policies:                # Policies associated with this role
+        # syntax: - p, proj:<project-name>:<role-name>, applications, <action>, <project>/<app-name>, permission(allow|deny)
+        - p, proj:my-project-team:frontend-admins, applications, *, my-project-team/*, allow
