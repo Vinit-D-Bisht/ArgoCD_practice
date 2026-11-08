@@ -10,7 +10,7 @@ spec:
     targetRevision: main           
     path: declarative_deployment
   destination:
-    server: https://kubernetes.default.svc
+    server: https://172.18.0.4:6443
     namespace: default             
   syncPolicy:                      
     automated:                     
