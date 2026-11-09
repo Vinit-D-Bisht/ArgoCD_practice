@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: vinit-list
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          - app: nginx
+            path: ui_deployment
+          - app: apache
+            path: cli_deployment
+          - app: caddy
+            path: declarative_deployment
+  template:
+    metadata:
+      name: '{{app}}-list'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/Vinit-D-Bisht/ArgoCD_practice.git
+        targetRevision: main
+        path: '{{path}}'                # resolved from element
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: default
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
