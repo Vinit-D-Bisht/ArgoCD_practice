@@ -15,7 +15,7 @@ spec:
         app: apps
     spec:
       containers:
-      - name: Django-app
+      - name: django-app
         image: vinitbisht/todo-project:v1.0
         ports:
         - containerPort: 8080

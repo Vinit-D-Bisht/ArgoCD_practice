@@ -1,11 +1,11 @@
 apiVersion: argoproj.io/v1alpha1 # Specifies the API version for the ArgoCD Application CRD
 kind: Application               # Declares this resource as an ArgoCD Application
 metadata:
-  name: Django-app                # Name of the ArgoCD Application
+  name: django-app                # Name of the ArgoCD Application
   namespace: argocd             # Namespace where the Application resource will be created
   annotations:
     # Assign alias 'chai-app' to your image
-    argocd-image-updater.argoproj.io/image-list: Django-app=vinitbisht/todo-project:v1.0 # Maps the image alias 'chai-app' to your DockerHub image
+    argocd-image-updater.argoproj.io/image-list: django-app=vinitbisht/todo-project:v1.0 # Maps the image alias 'chai-app' to your DockerHub image
 
     # Use git write-back
     argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/argocd-image-updater-git-creds # Configures image updater to write changes back to Git using provided secret
